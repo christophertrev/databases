@@ -11,21 +11,32 @@ var connection = mysql.createConnection({
   password : '',
   database : 'chat',
 });
+// connection.connect();
 
-connection.connect();
+// var queryString = 'SELECT * FROM messages';
 
-var queryString = 'SELECT * FROM messages';
+// var openDB = function(){
+// };
 
-connection.query(queryString, function(err, rows, fields) {
-    if (err) throw err;
+// var closeDB = function(){
+//   connection.end();
+// };
 
-    for (var i in rows) {
-        console.log('Post Titles: ', rows[i]);
-    }
-    console.log('Fields ' + Object.keys(fields));
+    // get: function (function(){
+    //  end database connection
+    // }) {
+// connection.query(queryString, function(err, rows, fields) {
+//     if (err) throw err;
 
-});
+//     for (var i in rows) {
+//         console.log('Post Titles: ', rows[i]);
+//     }
+//     for (var i in fields) {
+//       console.log('fields: ');
+//       console.log(fields[i]);
+//     }
+//     console.log('Fields ' + Object.keys(fields));
+//      // callback()
+// });
 
-connection.end();
-
-// modules.exports =
+module.exports = connection;
