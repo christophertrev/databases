@@ -5,3 +5,27 @@ var mysql = require('mysql');
 // and to the database "chat".
 
 
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'chat',
+});
+
+connection.connect();
+
+var queryString = 'SELECT * FROM messages';
+
+connection.query(queryString, function(err, rows, fields) {
+    if (err) throw err;
+
+    for (var i in rows) {
+        console.log('Post Titles: ', rows[i]);
+    }
+    console.log('Fields ' + Object.keys(fields));
+
+});
+
+connection.end();
+
+// modules.exports =
