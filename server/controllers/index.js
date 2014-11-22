@@ -17,7 +17,26 @@ module.exports = {
       console.log('messages passed');
 
     }, // a function which handles a get request for all messages
-    post: function (req, res) {} // a function which handles posting a message to the database
+    post: function (req, res) {
+      console.log(req.json);
+       // models.messages.post();
+       //
+       //
+      var data = '';
+      req.on('data', function(chunk){
+        data += chunk;
+      });
+      req.on('end', function(){
+        // console.log(JSON.parse(data))
+        // data = JSON.parse(data)
+        console.log(typeof data)
+        models.messages.post(data, function(){
+          // console.log(arguments);
+        });
+      });
+
+
+    } // a function which handles posting a message to the database
   },
 
   users: {

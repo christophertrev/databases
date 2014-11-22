@@ -13,11 +13,20 @@ var queryDB = function (queryString, callback){
 module.exports = {
   messages: {
     get: function(callback){
-      var queryString = 'select u.username, r.roomname, m.text, m.datecreated from users u '+
-      'JOIN messages m on u.id = m.user_id JOIN rooms r on r.id = m.room_id;'      // var queryString = 'select u.username, r.roomname, m.text, m.datecreated' +
+      var queryString = 'SELECT * FROM messages;';
       queryDB(queryString, callback);
     },
-    post: function () {} // a function which can be used to insert a message into the database
+    post: function (message, callback) {
+      console.log("message");
+      console.log(typeof message);
+      message = JSON.parse(message);
+      console.log(typeof message);
+
+      var queryString = 'insert into messages (text, username, roomname)'+
+      ' values ('+message.text+', '+message.username+','+message.roomname+');';
+      console.log(queryString);
+      queryDB(queryString, callback);
+    } // a function which can be used to insert a message into the database
   },
 
   users: {
@@ -48,3 +57,6 @@ module.exports = {
     //       console.log('Fields ' + Object.keys(fields));
     //        callback()
     //   });
+
+var queryString = 'select u.username, r.roomname, m.text, m.datecreated from users u '+
+      'JOIN messages m on u.id = m.user_id JOIN rooms r on r.id = m.room_id;'      // var queryString = 'select u.username, r.roomname, m.text, m.datecreated' +

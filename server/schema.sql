@@ -35,8 +35,10 @@ CREATE TABLE `messages` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `text` VARCHAR(300) NULL DEFAULT NULL,
   `dateCreated` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_id` INTEGER NULL DEFAULT NULL,
-  `room_id` INTEGER NULL DEFAULT NULL,
+  `userName` VARCHAR(10) NULL DEFAULT NULL,
+  `roomName` VARCHAR(25) NULL DEFAULT NULL,
+  -- `user_id` INTEGER NULL DEFAULT NULL,
+  -- `room_id` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -47,31 +49,31 @@ CREATE TABLE `messages` (
 
 DROP TABLE IF EXISTS `users`;
 
-CREATE TABLE `users` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `userName` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `users` (
+--   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+--   `userName` VARCHAR(10) NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
--- ---
--- Table 'Rooms'
---
--- ---
+-- -- ---
+-- -- Table 'Rooms'
+-- --
+-- -- ---
 
 DROP TABLE IF EXISTS `rooms`;
 
-CREATE TABLE `rooms` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `roomName` VARCHAR(25) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `rooms` (
+--   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+--   `roomName` VARCHAR(25) NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
--- ---
--- Foreign Keys
--- ---
+-- -- ---
+-- -- Foreign Keys
+-- -- ---
 
-ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
 
 -- ---
 -- Table Properties
