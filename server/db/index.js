@@ -10,8 +10,9 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : '',
   database : 'chat',
+  // multipleStatements: true
 });
-// connection.connect();
+connection.connect();
 
 // var queryString = 'SELECT * FROM messages';
 

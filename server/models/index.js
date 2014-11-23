@@ -1,11 +1,11 @@
 var db = require('../db');
 
 var queryDB = function (queryString, callback){
-  db.connect();
+
   db.query(queryString, function(err, rows, fields){
     if (err) {throw err;}
     callback(rows, fields);
-    db.end();
+    // db.end();
   });
 };
 
@@ -17,14 +17,11 @@ module.exports = {
       queryDB(queryString, callback);
     },
     post: function (message, callback) {
-      console.log("message");
-      console.log(typeof message);
-      message = JSON.parse(message);
-      console.log(typeof message);
-
-      var queryString = 'insert into messages (text, username, roomname)'+
-      ' values ('+message.text+', '+message.username+','+message.roomname+');';
-      console.log(queryString);
+      console.log('message');
+      console.log(message);
+      var queryString = 'insert into messages (message, username, roomname)'+
+      ' values ("'+message.message+'", "'+message.username+'","'+message.roomname+'");';
+      console.log(queryString)
       queryDB(queryString, callback);
     } // a function which can be used to insert a message into the database
   },
@@ -58,5 +55,5 @@ module.exports = {
     //        callback()
     //   });
 
-var queryString = 'select u.username, r.roomname, m.text, m.datecreated from users u '+
-      'JOIN messages m on u.id = m.user_id JOIN rooms r on r.id = m.room_id;'      // var queryString = 'select u.username, r.roomname, m.text, m.datecreated' +
+// var queryString = 'select u.username, r.roomname, m.text, m.datecreated from users u '+
+//       'JOIN messages m on u.id = m.user_id JOIN rooms r on r.id = m.room_id;'      // var queryString = 'select u.username, r.roomname, m.text, m.datecreated' +

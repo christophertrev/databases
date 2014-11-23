@@ -17,7 +17,18 @@ app.set("port", 3000);
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("access-control-allow-methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("access-control-allow-headers", "content-type, accept");
+  res.setHeader("access-control-max-age", 10); // Seconds.
+  res.setHeader('Content-Type',"application/json")
+  return next();
+});
 
+app.options('/',function(req,res){
+  res.end();
+});
 // Set up our routes
 app.use("/classes", router);
 
